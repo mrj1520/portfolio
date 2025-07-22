@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Hasan Mohauaudin - Web Developer</title>
+    
+    <!-- Tailwind CSS for rapid, responsive UI development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Custom CSS for a unique touch, inspired by your image */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Color Palette from your image */
+            --bg-dark: #1e293b;      /* Deep dark blue-gray */
+            --bg-card: #334155;      /* Lighter card background */
+            --primary: #5eead4;      /* Bright teal/mint for accents */
+            --secondary: #fde047;    /* Yellow for highlights */
+            --text-light: #e2e8f0;   /* Light gray for text */
+            --text-dark: #94a3b8;    /* Muted gray for secondary text */
+        }
+
+        /* --- Progress Bar for Skills --- */
+        .progress-bar-container {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 10px;
+            width: 0; /* Initial width */
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* --- Project Filter Button Styling --- */
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* --- Glassmorphism Effect for Header --- */
+        .glass-header {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        
+        /* --- Fade-in on Scroll Animation --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Submit Button Loading Animation --- */
+        .loader {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-900 text-slate-300" style="background-color: var(--bg-dark); color: var(--text-light);">
+
+    <!-- =========== HEADER / NAVIGATION =========== -->
+    <header id="header" class="glass-header sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold" style="color: var(--primary);">MHM.</a>
+            <ul class="hidden md:flex items-center space-x-8">
+                <li><a href="#about" class="hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);">About</a></li>
+                <li><a href="#services" class="hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);">Services</a></li>
+                <li><a href="#skills" class="hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);">Skills</a></li>
+                <li><a href="#projects" class="hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);">Projects</a></li>
+                <li><a href="#contact" class="hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);">Contact</a></li>
+            </ul>
+             <a href="#contact" class="hidden md:block bg-teal-400 text-gray-900 font-bold py-2 px-6 rounded-lg hover:bg-teal-300 transition-colors" style="background-color: var(--primary); color: var(--bg-dark); --tw-hover-bg: var(--secondary);">
+                Hire Me
+            </a>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="flex flex-col items-center space-y-4 py-4">
+                <li><a href="#about" class="hover:text-teal-300">About</a></li>
+                <li><a href="#services" class="hover:text-teal-300">Services</a></li>
+                <li><a href="#skills" class="hover:text-teal-300">Skills</a></li>
+                <li><a href="#projects" class="hover:text-teal-300">Projects</a></li>
+                <li><a href="#contact" class="hover:text-teal-300">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- =========== HERO SECTION =========== -->
+        <section id="home" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="fade-in-section mb-8">
+                 <img src="image_f7c816.jpg" alt="Muhammad Hasan Mohauaudin Portrait" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4" style="border-color: var(--primary);">
+            </div>
+            <div class="fade-in-section max-w-2xl">
+                <h1 class="text-3xl md:text-4xl font-bold leading-tight" style="color: var(--text-light);">
+                    Hi, I'm Muhammad Hasan Mohauaudin
+                    <br><span style="color: var(--primary);">Crafting Digital Experiences That Tell Stories</span>
+                </h1>
+                <p class="mt-6 text-lg" style="color: var(--text-dark);">
+                    I build beautiful, responsive, and highly functional web applications. Turning complex problems into elegant digital solutions is my passion.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#projects" class="bg-teal-400 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-teal-300 transition-colors text-lg" style="background-color: var(--primary); color: var(--bg-dark); --tw-hover-bg: var(--secondary);">
+                        View My Work
+                    </a>
+                    <a href="/path-to-your-resume.pdf" download class="border-2 border-slate-600 text-slate-300 font-bold py-3 px-8 rounded-lg hover:bg-slate-700 hover:border-slate-700 transition-colors text-lg" style="border-color: var(--text-dark); color: var(--text-light); --tw-hover-bg: var(--bg-card);">
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== ABOUT ME SECTION =========== -->
+        <section id="about" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-10">
+                <div class="p-8 rounded-lg max-w-2xl text-center" style="background-color: var(--bg-card); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);">
+                    <p class="text-lg" style="color: var(--text-dark);">
+                        I'm a passionate web developer with a keen eye for detail and a love for creating seamless user experiences. My expertise lies in building interactive, responsive, and modern websites from the ground up. With a strong foundation in clean design principles, I focus on writing maintainable code and delivering digital products that not only look great but also perform flawlessly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SERVICES SECTION =========== -->
+        <section id="services" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-2">What I Offer</h2>
+            <div class="w-24 h-1 mx-auto mb-12" style="background-color: var(--primary);"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="p-8 text-center rounded-lg transform hover:-translate-y-2 transition-transform duration-300" style="background-color: var(--bg-card);">
+                    <i class="fas fa-code text-4xl mb-4" style="color: var(--primary);"></i>
+                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
+                    <p style="color: var(--text-dark);">Full-stack development to bring your project ideas to life.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="p-8 text-center rounded-lg transform hover:-translate-y-2 transition-transform duration-300" style="background-color: var(--bg-card);">
+                    <i class="fas fa-pencil-ruler text-4xl mb-4" style="color: var(--primary);"></i>
+                    <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+                    <p style="color: var(--text-dark);">Intuitive and engaging user interfaces designed for humans.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="p-8 text-center rounded-lg transform hover:-translate-y-2 transition-transform duration-300" style="background-color: var(--bg-card);">
+                    <i class="fas fa-mobile-alt text-4xl mb-4" style="color: var(--primary);"></i>
+                    <h3 class="text-xl font-bold mb-2">Responsive Design</h3>
+                    <p style="color: var(--text-dark);">Websites that look and work perfectly on all devices.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="p-8 text-center rounded-lg transform hover:-translate-y-2 transition-transform duration-300" style="background-color: var(--bg-card);">
+                    <i class="fas fa-tachometer-alt text-4xl mb-4" style="color: var(--primary);"></i>
+                    <h3 class="text-xl font-bold mb-2">Speed Optimization</h3>
+                    <p style="color: var(--text-dark);">Fast-loading pages for better user experience and SEO.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== SKILLS SECTION =========== -->
+        <section id="skills" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">My Tech Arsenal</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Skill 1: HTML -->
+                <div class="skill-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-lg"><i class="fab fa-html5 mr-2" style="color: var(--primary);"></i>HTML</span>
+                        <span class="text-sm" style="color: var(--text-dark);">95%</span>
+                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" data-width="95%"></div></div>
+                </div>
+                <!-- Skill 2: CSS -->
+                <div class="skill-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-lg"><i class="fab fa-css3-alt mr-2" style="color: var(--primary);"></i>CSS</span>
+                        <span class="text-sm" style="color: var(--text-dark);">90%</span>
+                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" data-width="90%"></div></div>
+                </div>
+                <!-- Skill 3: JavaScript -->
+                <div class="skill-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-lg"><i class="fab fa-js-square mr-2" style="color: var(--primary);"></i>JavaScript</span>
+                        <span class="text-sm" style="color: var(--text-dark);">85%</span>
+                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" data-width="85%"></div></div>
+                </div>
+                <!-- Skill 4: React -->
+                <div class="skill-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-lg"><i class="fab fa-react mr-2" style="color: var(--primary);"></i>React</span>
+                        <span class="text-sm" style="color: var(--text-dark);">80%</span>
+                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" data-width="80%"></div></div>
+                </div>
+                <!-- Skill 5: Node.js -->
+                <div class="skill-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-bold text-lg"><i class="fab fa-node-js mr-2" style="color: var(--primary);"></i>Node.js</span>
+                        <span class="text-sm" style="color: var(--text-dark);">75%</span>
+                    </div>
+                    <div class="progress-bar-container"><div class="progress-bar" data-width="75%"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== PROJECTS SECTION =========== -->
+        <section id="projects" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-2">Featured Projects</h2>
+            <div class="w-24 h-1 mx-auto mb-8" style="background-color: var(--primary);"></div>
+
+            <!-- Project Filter -->
+            <div id="project-filters" class="flex justify-center flex-wrap gap-4 mb-12">
+                <button class="filter-btn active py-2 px-4 rounded-lg font-semibold" data-filter="all">All</button>
+                <button class="filter-btn py-2 px-4 rounded-lg font-semibold" data-filter="frontend">Frontend</button>
+                <button class="filter-btn py-2 px-4 rounded-lg font-semibold" data-filter="backend">Backend</button>
+                <button class="filter-btn py-2 px-4 rounded-lg font-semibold" data-filter="webapp">Web Apps</button>
+            </div>
+
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="project-card rounded-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300" style="background-color: var(--bg-card);" data-category="webapp">
+                    <img src="https://placehold.co/600x400/1e293b/5eead4?text=Project+One" alt="Project One Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm mb-1" style="color: var(--primary);">Web App</p>
+                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                        <p class="mb-4 text-sm" style="color: var(--text-dark);">A full-stack e-commerce site built with the MERN stack.</p>
+                        <a href="#" target="_blank" class="font-semibold hover:underline" style="color: var(--secondary);">View Live &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="project-card rounded-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300" style="background-color: var(--bg-card);" data-category="frontend">
+                    <img src="https://placehold.co/600x400/1e293b/5eead4?text=Project+Two" alt="Project Two Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm mb-1" style="color: var(--primary);">Frontend</p>
+                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+                        <p class="mb-4 text-sm" style="color: var(--text-dark);">A sleek task manager with drag-and-drop functionality.</p>
+                        <a href="#" target="_blank" class="font-semibold hover:underline" style="color: var(--secondary);">View Live &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="project-card rounded-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300" style="background-color: var(--bg-card);" data-category="backend">
+                    <img src="https://placehold.co/600x400/1e293b/5eead4?text=Project+Three" alt="Project Three Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <p class="text-sm mb-1" style="color: var(--primary);">Backend</p>
+                        <h3 class="text-xl font-bold mb-2">RESTful API Service</h3>
+                        <p class="mb-4 text-sm" style="color: var(--text-dark);">A robust API for a mobile application using Node.js & Express.</p>
+                        <a href="#" target="_blank" class="font-semibold hover:underline" style="color: var(--secondary);">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== TESTIMONIALS SECTION =========== -->
+        <section id="testimonials" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">What Clients Say</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-8 rounded-lg" style="background-color: var(--bg-card);">
+                    <p class="mb-4" style="color: var(--text-dark);">"Working with Muhammad was an absolute pleasure. His attention to detail and commitment to quality resulted in a product that exceeded our expectations."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/5eead4/1e293b?text=A" alt="Client A" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold">Client A</p>
+                            <p class="text-sm" style="color: var(--text-dark);">CEO, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-8 rounded-lg" style="background-color: var(--bg-card);">
+                    <p class="mb-4" style="color: var(--text-dark);">"The final website is not only beautiful but also incredibly fast and responsive. I couldn't be happier with the result. Highly recommended!"</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/fde047/1e293b?text=B" alt="Client B" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold">Client B</p>
+                            <p class="text-sm" style="color: var(--text-dark);">Founder, Creative Co.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========== CONTACT SECTION =========== -->
+        <section id="contact" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-2">Let's Build Something Amazing</h2>
+            <div class="w-24 h-1 mx-auto mb-12" style="background-color: var(--primary);"></div>
+            <div class="max-w-2xl mx-auto text-center">
+                <p class="mb-8" style="color: var(--text-dark);">Have a project in mind? I'd love to hear about it. You can reach me via the form below, or send me an email or phone call directly.</p>
+                <a href="mailto:muhammad.mohauaudin.092@gmail.com" class="text-lg font-semibold hover:underline" style="color: var(--primary);">muhammad.mohauaudin.092@gmail.com</a>
+                <div class="mt-4">
+                    <a href="tel:+923288191900" class="text-lg font-semibold hover:underline" style="color: var(--primary);">
+                        <i class="fas fa-phone mr-2"></i>+92 328 8191900
+                    </a>
+                </div>
+                <div class="flex justify-center space-x-6 my-8">
+                    <a href="#" class="text-2xl hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-2xl hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-2xl hover:text-teal-300" style="color: var(--text-light); --tw-hover-color: var(--primary);"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="max-w-2xl mx-auto p-8 rounded-lg" style="background-color: var(--bg-card);">
+                <form id="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Your Name" required class="w-full p-3 rounded-lg border focus:outline-none focus:ring-2" style="background-color: var(--bg-dark); border-color: var(--bg-card); color: var(--text-light); --tw-ring-color: var(--primary);">
+                        <input type="email" placeholder="Your Email" required class="w-full p-3 rounded-lg border focus:outline-none focus:ring-2" style="background-color: var(--bg-dark); border-color: var(--bg-card); color: var(--text-light); --tw-ring-color: var(--primary);">
+                    </div>
+                    <div class="mt-6">
+                        <textarea placeholder="Your Message" rows="5" required class="w-full p-3 rounded-lg border focus:outline-none focus:ring-2" style="background-color: var(--bg-dark); border-color: var(--bg-card); color: var(--text-light); --tw-ring-color: var(--primary);"></textarea>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button id="submit-btn" type="submit" class="bg-teal-400 text-gray-900 font-bold py-3 px-8 rounded-lg hover:bg-teal-300 transition-colors w-full md:w-auto flex items-center justify-center gap-2" style="background-color: var(--primary); color: var(--bg-dark); --tw-hover-bg: var(--secondary);">
+                            <span id="submit-btn-text">Send Message</span>
+                            <div id="submit-loader" class="loader hidden"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========== FOOTER =========== -->
+    <footer class="py-8" style="background-color: var(--bg-card);">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2" style="color: var(--text-dark);">Built by Muhammad Hasan with <i class="fas fa-heart" style="color: var(--primary);"></i></p>
+            <p style="color: var(--text-dark);">&copy; 2024 Muhammad Hasan Mohauaudin. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Animate Progress Bars on Scroll ---
+            const animateProgressBars = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillSection = entry.target;
+                        const progressBars = skillSection.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            bar.style.width = width;
+                        });
+                        observer.unobserve(skillSection); // Animate only once
+                    }
+                });
+            };
+
+            // --- Project Filtering Logic ---
+            const filterContainer = document.querySelector('#project-filters');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            if (filterContainer) {
+                filterContainer.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'BUTTON') return;
+
+                    // Update active button state
+                    const activeBtn = filterContainer.querySelector('.active');
+                    activeBtn.classList.remove('active');
+                    e.target.classList.add('active');
+
+                    const filter = e.target.dataset.filter;
+
+                    projectCards.forEach(card => {
+                        const category = card.dataset.category;
+                        if (filter === 'all' || filter === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // --- Contact Form Submission Simulation ---
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitBtnText = document.getElementById('submit-btn-text');
+            const submitLoader = document.getElementById('submit-loader');
+
+            if(contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loader and disable button
+                    submitBtnText.textContent = 'Sending...';
+                    submitLoader.classList.remove('hidden');
+                    submitBtn.disabled = true;
+
+                    // Simulate network request
+                    setTimeout(() => {
+                        submitBtnText.textContent = 'Message Sent!';
+                        submitLoader.classList.add('hidden');
+                        contactForm.reset();
+
+                        // Reset button after a few seconds
+                        setTimeout(() => {
+                            submitBtnText.textContent = 'Send Message';
+                            submitBtn.disabled = false;
+                        }, 3000);
+
+                    }, 2000);
+                });
+            }
+
+            // --- Intersection Observer for Animations ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const skillsSection = document.querySelector('#skills');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            if (skillsSection) {
+                const skillsObserver = new IntersectionObserver(animateProgressBars, { threshold: 0.5 });
+                skillsObserver.observe(skillsSection);
+            }
+        });
+    </script>
+
+</body>
+</html>
