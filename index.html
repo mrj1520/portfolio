@@ -27,6 +27,22 @@
             --secondary: #fde047;    /* Yellow for highlights */
             --text-light: #e2e8f0;   /* Light gray for text */
             --text-dark: #94a3b8;    /* Muted gray for secondary text */
+
+            /* New background for glass effect */
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 10%, hsla(168, 76%, 53%, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 90%, hsla(53, 96%, 62%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, hsla(210, 40%, 50%, 0.1) 0px, transparent 50%);
+        }
+
+        /* --- Glassmorphism Card for About Me Section --- */
+        .glass-card {
+            background: rgba(51, 65, 85, 0.5); /* --bg-card with alpha */
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(94, 234, 212, 0.2);
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);
         }
 
         /* --- Progress Bar for Skills --- */
@@ -158,7 +174,7 @@
         <section id="about" class="py-20 fade-in-section">
             <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
             <div class="flex flex-col md:flex-row items-center justify-center gap-10">
-                <div class="p-8 rounded-lg max-w-2xl text-center" style="background-color: var(--bg-card); box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);">
+                <div class="p-8 rounded-lg max-w-2xl text-center glass-card">
                     <p class="text-lg" style="color: var(--text-dark);">
                         I'm a passionate web developer with a keen eye for detail and a love for creating seamless user experiences. My expertise lies in building interactive, responsive, and modern websites from the ground up. With a strong foundation in clean design principles, I focus on writing maintainable code and delivering digital products that not only look great but also perform flawlessly.
                     </p>
